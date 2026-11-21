@@ -26,6 +26,11 @@ permissions:
 jobs:
   push_to_registry:
     name: Push Docker image to registries
+    # Fork-only guard: this job pushes upstream's Docker Hub image and needs
+    # upstream's DOCKERHUB_* secrets, which a fork does not have, so in a fork it
+    # can only fail ("Username and password required"). The fork builds and pushes
+    # its own image in fork-image.yml instead.
+    if: ${{ github.repository == 'arpanghosh8453/fitbit-grafana' }}
     runs-on: ubuntu-latest
     steps:
       - name: Check out the repo

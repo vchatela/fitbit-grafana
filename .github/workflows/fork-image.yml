@@ -1,9 +1,9 @@
 # Fork-only: builds main into ghcr.io/vchatela/fitbit-fetch-data.
 #
-# Upstream's prod.push.yml is guarded on thisisarpanghosh/fitbit-fetch-data and
-# never runs in a fork, and GitHub does not register a fork's inherited
-# workflows either, so without this file no image of this fork exists at all —
-# which is why a merged dependency bump here reaches nothing deployed.
+# Upstream's prod.push.yml only ever pushes thisisarpanghosh/fitbit-fetch-data
+# and needs upstream's DockerHub secrets, so in a fork it can only fail; it is
+# skipped there by a `github.repository` guard. Without this file no image of
+# this fork exists at all, so a merged change here would reach nothing deployed.
 name: Fork image
 
 on:
